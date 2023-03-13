@@ -1,11 +1,11 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import RegisterPage from '../components/pages/RegisterPage';
-import LoginPage from '../components/pages/LoginPage';
+import HomePage from '../components/pages/HomePage';
+
 
 const Stack = createStackNavigator();
 
-const LoginNavigator = () => {
+const AppNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -14,10 +14,9 @@ const LoginNavigator = () => {
           backgroundColor: 'white',
         },
       }}>
-      <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="RegisterPage" component={RegisterPage} />
+      <Stack.Screen name="HomePage" component={HomePage} />
     </Stack.Navigator>
   );
 };
 
-export default LoginNavigator;
+export default AppNavigator;
