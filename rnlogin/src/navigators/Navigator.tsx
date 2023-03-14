@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppNavigator from './AppNavigator';
 import LoginNavigator from './LoginNavigator';
+import { useAppSelector } from '../hooks/loginHooks';
+import { selectStatus } from '../redux/slices/authSlice';
+
+
 
 const Navigator = () => {
-     const [isLoggedIn, setIsLoggedIn] = useState(false);
-  return <>{isLoggedIn ? <AppNavigator /> : <LoginNavigator />}</>;
+  const isLoggedIn = useAppSelector(selectStatus);
+  return <>{isLoggedIn === 'authenticated' ? <AppNavigator /> : <LoginNavigator />}</>;
 };
 
 export default Navigator;
