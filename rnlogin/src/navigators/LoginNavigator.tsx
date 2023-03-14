@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import RegisterPage from '../components/pages/RegisterPage';
 import LoginPage from '../components/pages/LoginPage';
+import { RegisterPage } from '../components/pages/RegisterPage';
 
 const Stack = createStackNavigator();
 

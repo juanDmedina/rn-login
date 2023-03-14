@@ -35,6 +35,12 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
     },
+    register: (state, action) => {
+      state.errorMessage = '';
+      state.status = 'not-authenticated';
+      state.token = null;
+      state.user = action.payload.user;
+    },
     logout: state => {
       state.user = null;
       state.status = 'not-authenticated';
@@ -49,35 +55,7 @@ const authSlice = createSlice({
   },
 });
 
-// export const fetchUsers =
-//   ({correo, password}: LoginData) =>
-//   async (
-//     dispatch
-//   ) => {
-//     try {
-//       const {data} = await loginApi.post<LoginResponse>('/auth/login', {
-//         correo,
-//         password,
-//       });
-
-//       dispatch(success({token: data.token, user: data.usuario}));
-
-//       await AsyncStorage.setItem('token', data.token);
-//     } catch ({error}: any) {
-//       dispatch(error('Información incorrecta'));
-//     }
-//   };
-
-// // export const fetchUsers = () => async (dispatch: any) => {
-// //   try {
-// //     const userLists = await getUserList();
-// //     dispatch(success({userList: userLists}));
-// //   } catch (err) {
-// //     dispatch(error());
-// //   }
-// // };
-
-export const {addMessageError, removeMessageError, login, logout, initial} =
+export const {addMessageError, removeMessageError, login, logout, initial, register} =
   authSlice.actions;
 
 export const selectToken = (state: RootState) => state.authentication.token;

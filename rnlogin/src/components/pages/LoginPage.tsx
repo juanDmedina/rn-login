@@ -1,20 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState, useContext} from 'react';
 import {Alert, Keyboard} from 'react-native';
-import styled from 'styled-components/native';
 import {StackScreenProps} from '@react-navigation/stack';
-import LoginButtons from '../organisms/LoginButtons';
+import LoginButtons from '../molecules/LoginButtons';
 import TextInputsLogin from '../organisms/TextInputsLogin';
-import { useAppSelector} from '../../hooks/loginHooks';
+import {useAppSelector} from '../../hooks/loginHooks';
 import {AuthContext} from '../../context/AuthContext';
 import {selectErrorMessage} from '../../redux/slices/authSlice';
+import {CenterView} from '../atoms/CenterView';
 
-const StyledView = styled.View`
-  background-color: #ffffff;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginPage = ({navigation}: Props) => {
@@ -29,12 +23,15 @@ const LoginPage = ({navigation}: Props) => {
       return;
     }
 
-    Alert.alert('Login incorrecto', errorMessage, [
-      {
-        text: 'Ok',
-        onPress: removeError,
-      },
-    ]);
+    if (errorMessage.includes('incorrecto')) {
+      Alert.alert('Registro incorrecto', errorMessage, [
+        {
+          text: 'Ok',
+          onPress: removeError,
+        },
+      ]);
+      return;
+    }
   }, [errorMessage]);
 
   const handleLogin = () => {
@@ -51,7 +48,7 @@ const LoginPage = ({navigation}: Props) => {
   };
 
   return (
-    <StyledView>
+    <CenterView>
       <TextInputsLogin
         OnChangeEmail={OnChangeEmail}
         OnChangePassword={OnChangePassword}
@@ -60,7 +57,7 @@ const LoginPage = ({navigation}: Props) => {
         OnPressSingIn={handleLogin}
         OnPressRegister={() => navigation.navigate('RegisterPage')}
       />
-    </StyledView>
+    </CenterView>
   );
 };
 

@@ -13,10 +13,12 @@ import {
   initial,
   login,
   logout,
+  register,
   removeMessageError,
 } from '../redux/slices/authSlice';
 
 type AuthContextProps = {
+  checkToken: () => void;
   signUp: (registerData: RegisterData) => void;
   signIn: (loginData: LoginData) => void;
   logOut: () => void;
@@ -71,9 +73,8 @@ export const AuthProvider = ({children}: any) => {
         password,
         nombre,
       });
-      dispatch(login({token: data.token, user: data.usuario}));
-
-      await AsyncStorage.setItem('token', data.token);
+      dispatch(register({user: data.usuario}));
+      dispatch(addMessageError('Registro Exitoso'));
     } catch ({error}: any) {
       dispatch(addMessageError('Información incorrecta'));
     }
@@ -91,6 +92,7 @@ export const AuthProvider = ({children}: any) => {
   return (
     <AuthContext.Provider
       value={{
+        checkToken,
         signUp,
         signIn,
         logOut,

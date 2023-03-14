@@ -1,9 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
+import {TextTitle} from '../atoms/TextTitle';
+import { CenterView } from '../atoms/CenterView';
+
 
 const HomePage = () => {
   return (
-    <View/>
+    <CenterView>
+      <TextTitle>Welcome to HomePage</TextTitle>
+    </CenterView>
   );
 };
 
