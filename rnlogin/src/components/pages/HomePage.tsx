@@ -4,51 +4,45 @@ import React, {useContext, useEffect} from 'react';
 import {TextTitle} from '../atoms/TextTitle';
 import {CenterView} from '../atoms/CenterView';
 import {StackScreenProps} from '@react-navigation/stack';
-import {Text, TouchableOpacity} from 'react-native';
 import Loader from '../atoms/Loader';
 import {AuthContext} from '../../context/AuthContext';
-import { useAppSelector } from '../../hooks/loginHooks';
-import { selectStatus } from '../../redux/slices/authSlice';
+import {useAppSelector} from '../../hooks/loginHooks';
+import {selectStatus} from '../../redux/slices/authSlice';
+import {ButtonExample, ButtonText} from '../atoms/ButtonA';
 
 interface Props extends StackScreenProps<any, any> {}
 
 const HomePage = ({navigation}: Props) => {
   const {logOut} = useContext(AuthContext);
- const status = useAppSelector(selectStatus);
-  const redirectLogin = () => {
+  const status = useAppSelector(selectStatus);
+  const exitPage = () => {
     logOut();
 
-    status === 'authenticated' ? <Loader /> : <></>;
+    return status === 'authenticated' ? <Loader /> : <></>;
   };
 
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={{marginRight: 10}}
-          onPress={() => {
-            redirectLogin();
-            navigation.replace('LoginScreen');
-          }}>
-          <Text>Salir </Text>
-        </TouchableOpacity>
+        <ButtonExample onPress={exitPage}>
+          <ButtonText>Exit</ButtonText>
+        </ButtonExample>
       ),
     });
   }, []);
 
+  useEffect(() => {
+    if (status !== 'authenticated') {
+      navigation.replace('LoginScreen');
+    }
+  }, [status]);
+
   return (
     <CenterView>
       <TextTitle>Welcome to HomePage</TextTitle>
-      <TouchableOpacity
-        activeOpacity={0.8}
-        style={{marginRight: 10}}
-        onPress={() => {
-          redirectLogin();
-          navigation.replace('LoginScreen');
-        }}>
-        <Text>Salir </Text>
-      </TouchableOpacity>
+      <ButtonExample onPress={exitPage}>
+        <ButtonText>Exit</ButtonText>
+      </ButtonExample>
     </CenterView>
   );
 };
