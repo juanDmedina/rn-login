@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   TextInput,
-  Platform,
   KeyboardTypeOptions,
   ColorValue,
+  StyleProp,
+  TextStyle,
 } from 'react-native';
-import {loginStyles} from '../../theme/loginTheme';
 
 interface TextInputProps {
   OnChange: (value: string) => void;
@@ -18,6 +18,9 @@ interface TextInputProps {
   autoCorrect?: boolean;
   secureTextEntry?: boolean;
   maxLength?: number;
+  cursorColor?: ColorValue;
+  onFocus: () => void;
+  style: StyleProp<TextStyle>;
 }
 
 const TextInputA = ({
@@ -30,6 +33,9 @@ const TextInputA = ({
   autoCapitalize = 'none',
   secureTextEntry = false,
   maxLength = 25,
+  cursorColor = 'black',
+  onFocus,
+  style,
 }: TextInputProps) => {
   return (
     <TextInput
@@ -38,10 +44,9 @@ const TextInputA = ({
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
       underlineColorAndroid={underlineColorAndroid}
-      style={[
-        loginStyles.inputField,
-        Platform.OS === 'ios' && loginStyles.inputFieldIOS,
-      ]}
+      cursorColor={cursorColor}
+      onFocus={onFocus}
+      style={style}
       selectionColor={selectionColor}
       onChangeText={value => OnChange(value)}
       autoCapitalize={autoCapitalize}
