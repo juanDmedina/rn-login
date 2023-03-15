@@ -58,11 +58,13 @@ export const AuthProvider = ({children}: any) => {
         correo,
         password,
       });
-      dispatch(login({token: data.token, user: data.usuario}));
+      if (data.token) {
+        dispatch(login({token: data.token, user: data.usuario}));
+      }
 
       await AsyncStorage.setItem('token', data.token);
-    } catch ({error}: any) {
-      dispatch(addMessageError('Información incorrecta'));
+    } catch ({ error }: any) {
+      dispatch(addMessageError({errorMessage: 'Información incorrecta'}));
     }
   };
 
@@ -74,9 +76,9 @@ export const AuthProvider = ({children}: any) => {
         nombre,
       });
       dispatch(register({user: data.usuario}));
-      dispatch(addMessageError('Registro Exitoso'));
+      dispatch(addMessageError({errorMessage: 'Registro Exitoso'}));
     } catch ({error}: any) {
-      dispatch(addMessageError('Información incorrecta'));
+      dispatch(addMessageError({errorMessage: 'Información incorrecta'}));
     }
   };
 

@@ -30,7 +30,7 @@ const authSlice = createSlice({
       state.user = null;
       state.status = 'not-authenticated';
       state.token = null;
-      state.errorMessage = action.payload;
+      state.errorMessage = action.payload.errorMessage;
     },
     removeMessageError: state => {
       state.errorMessage = '';
