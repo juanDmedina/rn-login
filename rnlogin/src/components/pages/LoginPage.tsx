@@ -15,24 +15,26 @@ import {CenterView} from '../atoms/CenterView';
 
 interface Props extends StackScreenProps<any, any> {}
 
-const LoginPage = ({ navigation }: Props) => {
+const LoginPage = ({navigation}: Props) => {
   const {signIn, removeError} = useContext(AuthContext);
   const errorMessage = useAppSelector(selectErrorMessage);
   const correo = useAppSelector(selectEmail);
   const password = useAppSelector(selectPassword);
 
-    useEffect(() => {
-      if (errorMessage.length === 0) {
-        return;
-      }
+  useEffect(() => {
+    if (errorMessage.length === 0) {
+      return;
+    }
 
+    if (errorMessage.includes('incorrecta')) {
       Alert.alert('Login incorrecto', errorMessage, [
         {
           text: 'Ok',
           onPress: removeError,
         },
       ]);
-    }, [errorMessage]);
+    }
+  }, [errorMessage]);
 
   const handleLogin = () => {
     Keyboard.dismiss();

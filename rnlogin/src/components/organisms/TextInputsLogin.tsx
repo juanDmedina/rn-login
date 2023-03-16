@@ -26,7 +26,6 @@ const TextInputsLogin = () => {
   const OnChangePassword = (password: string) => {
     setContrasena(password);
     dispatch(setPassword({ password }));
-
   };
   return (
     <>

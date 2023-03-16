@@ -78,7 +78,7 @@ export const AuthProvider = ({children}: any) => {
       dispatch(register({user: data.usuario}));
       dispatch(addMessageError({errorMessage: 'Registro Exitoso'}));
     } catch ({error}: any) {
-      dispatch(addMessageError({errorMessage: 'Información incorrecta'}));
+      dispatch(addMessageError({errorMessage: 'valida la información'}));
     }
   };
 
