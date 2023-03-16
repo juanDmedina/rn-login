@@ -27,7 +27,7 @@ import {
 } from '../redux/slices/authSlice';
 
 interface HooksProps{
-    statusSelector?: "checking" | "authenticated" | "not-authenticated";
+    statusSelector?: 'checking' | 'authenticated' | 'not-authenticated';
     tokenSelector: string | null;
     errorMessageSelector: string;
     userSelector: Usuario | null;
