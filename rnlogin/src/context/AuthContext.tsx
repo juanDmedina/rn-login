@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {createContext, useEffect} from 'react';
+import React, {createContext, useContext, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   LoginResponse,
   LoginData,
   RegisterData,
+  Usuario,
 } from '../interfaces/appInterfaces';
-import {useAppDispatch} from '../hooks/loginHooks';
+import {useAppDispatch, useAppSelector} from '../hooks/loginHooks';
 import loginApi from '../api/loginApi';
+import { useMemo } from 'react';
 import {
   addMessageError,
   initial,
@@ -15,7 +17,24 @@ import {
   logout,
   register,
   removeMessageError,
+  selectEmail,
+  selectErrorMessage,
+  selectName,
+  selectPassword,
+  selectStatus,
+  selectToken,
+  selectUser,
 } from '../redux/slices/authSlice';
+
+interface HooksProps{
+    statusSelector?: "checking" | "authenticated" | "not-authenticated";
+    tokenSelector: string | null;
+    errorMessageSelector: string;
+    userSelector: Usuario | null;
+    nameSelector: string;
+    emailSelector: string;
+    passwordSelector: string;
+}
 
 type AuthContextProps = {
   checkToken: () => void;
@@ -23,12 +42,33 @@ type AuthContextProps = {
   signIn: (loginData: LoginData) => void;
   logOut: () => void;
   removeError: () => void;
+  hooks: HooksProps;
 };
 
 export const AuthContext = createContext({} as AuthContextProps);
 
 export const AuthProvider = ({children}: any) => {
   const dispatch = useAppDispatch();
+  const statusSelector = useAppSelector(selectStatus);
+  const tokenSelector = useAppSelector(selectToken);
+  const errorMessageSelector = useAppSelector(selectErrorMessage);
+  const userSelector = useAppSelector(selectUser);
+  const nameSelector = useAppSelector(selectName);
+  const emailSelector = useAppSelector(selectEmail);
+  const passwordSelector = useAppSelector(selectPassword);
+  const hooks = useMemo(
+    () => ({
+      statusSelector,
+      tokenSelector,
+      errorMessageSelector,
+      userSelector,
+      nameSelector,
+      emailSelector,
+      passwordSelector,
+      dispatch,
+    }),
+    [],
+  );
 
   useEffect(() => {
     checkToken();
@@ -94,6 +134,7 @@ export const AuthProvider = ({children}: any) => {
   return (
     <AuthContext.Provider
       value={{
+        hooks,
         checkToken,
         signUp,
         signIn,
@@ -104,3 +145,5 @@ export const AuthProvider = ({children}: any) => {
     </AuthContext.Provider>
   );
 };
+
+export const LoginContext = () => useContext(AuthContext);

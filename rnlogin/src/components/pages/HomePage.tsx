@@ -1,20 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
-import React, {useContext, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import {TextTitle} from '../atoms/TextTitle';
 import {CenterView} from '../atoms/CenterView';
 import {StackScreenProps} from '@react-navigation/stack';
 import Loader from '../atoms/Loader';
-import {AuthContext} from '../../context/AuthContext';
-import {useAppSelector} from '../../hooks/loginHooks';
-import {selectStatus} from '../../redux/slices/authSlice';
 import {ButtonExample, ButtonText} from '../atoms/ButtonA';
+import { LoginContext } from '../../context/AuthContext';
+
 
 interface Props extends StackScreenProps<any, any> {}
 
 const HomePage = ({navigation}: Props) => {
-  const {logOut} = useContext(AuthContext);
-  const status = useAppSelector(selectStatus);
+  const { logOut, hooks } = LoginContext();
+  let status = hooks && hooks.statusSelector;
   const exitPage = () => {
     logOut();
 
