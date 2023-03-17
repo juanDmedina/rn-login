@@ -18,6 +18,7 @@ export const RegisterPage = ({navigation}: Props) => {
   let password = hooks && hooks.passwordSelector;
 
   useEffect(() => {
+    errorMessage = errorMessage === undefined ? '' : errorMessage;
     if (errorMessage.length === 0) {
       return;
     }
