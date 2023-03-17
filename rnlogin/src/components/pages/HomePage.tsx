@@ -21,16 +21,6 @@ const HomePage = ({navigation}: Props) => {
   };
 
   useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <ButtonExample onPress={exitPage}>
-          <ButtonText>Exit</ButtonText>
-        </ButtonExample>
-      ),
-    });
-  }, []);
-
-  useEffect(() => {
     if (status !== 'authenticated') {
       navigation.replace('LoginScreen');
     }
