@@ -11,11 +11,19 @@ import {KeyboardAvoidingA} from '../atoms/KeyboardAvoidingA';
 interface Props extends StackScreenProps<any, any> {}
 
 export const RegisterPage = ({navigation}: Props) => {
-  const {signUp, removeError, hooks} = LoginContext();
-  let nombre = hooks && hooks.nameSelector;
-  let errorMessage = hooks && hooks.errorMessageSelector;
-  let correo = hooks && hooks.emailSelector;
-  let password = hooks && hooks.passwordSelector;
+  const {
+    signUp,
+    removeError,
+    nameSelector,
+    errorMessageSelector,
+    emailSelector,
+    passwordSelector,
+  } = LoginContext();
+  let nombre = nameSelector === undefined ? '' : nameSelector;
+  let errorMessage =
+    errorMessageSelector === undefined ? '' : errorMessageSelector;
+  let correo = emailSelector === undefined ? '' : emailSelector;
+  let password = passwordSelector === undefined ? '' : passwordSelector;
 
   useEffect(() => {
     errorMessage = errorMessage === undefined ? '' : errorMessage;

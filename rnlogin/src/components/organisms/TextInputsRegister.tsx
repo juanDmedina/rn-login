@@ -11,29 +11,29 @@ import { setEmail, setName, setPassword } from '../../redux/slices/authSlice';
 import { LoginContext } from '../../context/AuthContext';
 
 const TextInputsRegister = () => {
-  const {hooks} = LoginContext();
+  const {dispatch} = LoginContext();
   const [focusPassword, setFocusPassword] = useState(false);
   const [focusCorreo, setFocusCorreo] = useState(false);
   const [focusName, setFocusName] = useState(false);
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [nombre, setNombre] = useState('');
-  const dispatch = hooks && hooks.dispatch;
+  const dispatchFunction = dispatch === undefined ? () => '' : dispatch;
 
 
   const OnChangeName = (name: string) => {
     setNombre(name);
-     dispatch(setName({name}));
+     dispatchFunction(setName({name}));
   };
 
   const OnChangeEmail = (email: string) => {
     setCorreo(email);
-    dispatch(setEmail({ email}));
+    dispatchFunction(setEmail({email}));
   };
 
   const OnChangePassword = (password: string) => {
     setContrasena(password);
-    dispatch(setPassword({ password}));
+    dispatchFunction(setPassword({password}));
   };
   return (
     <>

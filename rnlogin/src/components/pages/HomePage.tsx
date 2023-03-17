@@ -12,8 +12,8 @@ import { LoginContext } from '../../context/AuthContext';
 interface Props extends StackScreenProps<any, any> {}
 
 const HomePage = ({navigation}: Props) => {
-  const { logOut, hooks } = LoginContext();
-  let status = hooks && hooks.statusSelector;
+  const { logOut, statusSelector } = LoginContext();
+  let status = statusSelector === undefined ? 'error' : statusSelector;
   const exitPage = () => {
     logOut();
 

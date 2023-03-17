@@ -1,7 +1,7 @@
 import {describe, expect, jest, test} from '@jest/globals';
 import {cleanup, render, fireEvent} from '@testing-library/react-native';
 import LoginPage from '../../../src/components/pages/LoginPage';
-import {AuthContext, HooksProps} from '../../../src/context/AuthContext';
+import {AuthContext} from '../../../src/context/AuthContext';
 
 const mockedNavigate = jest.fn();
 const mockedConfig = jest.fn();
@@ -10,16 +10,6 @@ const mockedCheckToken = jest.fn();
 const mockedSignUp = jest.fn();
 const mockedLogOut = jest.fn();
 const mockedRemoveError = jest.fn();
-const mockedHooks: HooksProps = {
-  dispatch: () => {},
-  emailSelector: '',
-  errorMessageSelector: 'información incorrecta',
-  nameSelector: '',
-  passwordSelector: '',
-  tokenSelector: '',
-  userSelector: null,
-  statusSelector: 'not-authenticated',
-};
 
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({navigate: mockedNavigate}),
@@ -58,7 +48,14 @@ describe('LoginPage', () => {
           signUp: mockedSignUp,
           logOut: mockedLogOut,
           removeError: mockedRemoveError,
-          hooks: mockedHooks,
+          statusSelector: '',
+          tokenSelector: null,
+          errorMessageSelector: 'información incorrecta',
+          userSelector: null,
+          nameSelector: '',
+          emailSelector: '',
+          passwordSelector: '',
+          dispatch: undefined,
         }}>
         <LoginPage {...navigationProps} />
       </AuthContext.Provider>,
@@ -66,9 +63,9 @@ describe('LoginPage', () => {
     const inputEmail = getByPlaceholderText('Input email');
     const inputPassword = getByPlaceholderText('Input password');
     const btnSignIn = getByText('Sign In');
-      const btnRegister = getByText('Register');
-      fireEvent.changeText(inputEmail, 'test@test.com');
-      fireEvent.changeText(inputPassword, '123456');
+    const btnRegister = getByText('Register');
+    fireEvent.changeText(inputEmail, 'test@test.com');
+    fireEvent.changeText(inputPassword, '123456');
     fireEvent.press(btnSignIn);
     fireEvent.press(btnRegister);
   });

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">9.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/44</span>
+                <span class='fraction'>4/42</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.97% </span>
+                <span class="strong">7.31% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/43</span>
+                <span class='fraction'>3/41</span>
             </div>
         
             
@@ -211,9 +211,11 @@
 <a name='L146'></a><a href='#L146'>146</a>
 <a name='L147'></a><a href='#L147'>147</a>
 <a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L149'></a><a href='#L149'>149</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,19 +274,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -362,7 +351,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react-hooks/exhaustive-deps */
 import React, {createContext, useContext, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -374,8 +370,8 @@ import {
 } from '../interfaces/appInterfaces';
 import {useAppDispatch, useAppSelector} from '../hooks/loginHooks';
 import loginApi from '../api/loginApi';
-import { useMemo } from 'react';
 import {
+  AuthState,
   addMessageError,
   initialRun,
   login,
@@ -390,17 +386,7 @@ import {
   selectToken,
   selectUser,
 } from '../redux/slices/authSlice';
-&nbsp;
-export interface HooksProps {
-  statusSelector?: 'checking' | 'authenticated' | 'not-authenticated';
-  tokenSelector: string | null;
-  errorMessageSelector: string;
-  userSelector: Usuario | null;
-  nameSelector: string;
-  emailSelector: string;
-  passwordSelector: string;
-  dispatch: any;
-}
+import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
 &nbsp;
 type AuthContextProps = {
   checkToken: () =&gt; void;
@@ -408,7 +394,21 @@ type AuthContextProps = {
   signIn: (loginData: LoginData) =&gt; void;
   logOut: () =&gt; void;
   removeError: () =&gt; void;
-  hooks: HooksProps;
+  statusSelector: string;
+  tokenSelector: string | null;
+  errorMessageSelector: string;
+  userSelector: Usuario | null;
+  nameSelector: string;
+  emailSelector: string;
+  passwordSelector: string;
+  dispatch: ThunkDispatch&lt;
+    {
+      authentication: AuthState;
+    },
+    undefined,
+    AnyAction
+  &gt; &amp;
+    Dispatch&lt;AnyAction&gt; | undefined;
 };
 &nbsp;
 export const AuthContext = createContext({} as AuthContextProps);
@@ -422,19 +422,6 @@ export const AuthProvider = <span class="fstat-no" title="function not covered" 
   const nameSelector = <span class="cstat-no" title="statement not covered" >useAppSelector(selectName);</span>
   const emailSelector = <span class="cstat-no" title="statement not covered" >useAppSelector(selectEmail);</span>
   const passwordSelector = <span class="cstat-no" title="statement not covered" >useAppSelector(selectPassword);</span>
-  const hooks = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >    ()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-      statusSelector,
-      tokenSelector,
-      errorMessageSelector,
-      userSelector,
-      nameSelector,
-      emailSelector,
-      passwordSelector,
-      dispatch,
-    }),
-    [],
-  );
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    checkToken();</span>
@@ -469,7 +456,7 @@ export const AuthProvider = <span class="fstat-no" title="function not covered" 
       }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      await AsyncStorage.setItem('token', data.token);</span>
-    } catch ({ error }: any) {
+    } catch ({error}: any) {
 <span class="cstat-no" title="statement not covered" >      dispatch(addMessageError({errorMessage: 'Información incorrecta'}));</span>
     }
   };
@@ -500,12 +487,19 @@ export const AuthProvider = <span class="fstat-no" title="function not covered" 
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;AuthContext.Provider
       value={{
-        hooks,
         checkToken,
         signUp,
         signIn,
         logOut,
         removeError,
+        statusSelector,
+        tokenSelector,
+        errorMessageSelector,
+        userSelector,
+        nameSelector,
+        emailSelector,
+        passwordSelector,
+        dispatch,
       }}&gt;
       {children}
     &lt;/AuthContext.Provider&gt;
@@ -520,7 +514,7 @@ export const LoginContext = () =&gt; useContext(AuthContext);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-17T14:52:03.800Z
+                at 2023-03-17T16:57:41.629Z
             </div>
         <script src="../prettify.js"></script>
         <script>

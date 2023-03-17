@@ -11,10 +11,10 @@ import {CenterView} from '../atoms/CenterView';
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginPage = ({navigation}: Props) => {
-  const { signIn, removeError, hooks } = LoginContext();
-  let errorMessage = hooks && hooks.errorMessageSelector;
-  let correo = hooks && hooks.emailSelector;
-  let password = hooks && hooks.passwordSelector;
+  const { signIn, removeError, errorMessageSelector, emailSelector, passwordSelector } = LoginContext();
+  let errorMessage = errorMessageSelector === undefined ? '' : errorMessageSelector;
+  let correo = emailSelector === undefined ? '' : emailSelector;
+  let password = passwordSelector === undefined ? '' : passwordSelector;
 
   useEffect(() => {
     errorMessage = errorMessage === undefined ? '' : errorMessage;

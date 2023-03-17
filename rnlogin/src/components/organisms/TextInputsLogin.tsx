@@ -10,22 +10,22 @@ import { setEmail, setPassword } from '../../redux/slices/authSlice';
 import { LoginContext } from '../../context/AuthContext';
 
 const TextInputsLogin = () => {
-  const {hooks} = LoginContext();
+  const {dispatch} = LoginContext();
   const [focus, setFocus] = useState(false);
   const [focusContrasena, setFocusContrasena] = useState(false);
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
-  const dispatch = hooks && hooks.dispatch;
+  const dispatchFunction = dispatch === undefined ? () => '' : dispatch;
 
   const OnChangeEmail = (email: string) => {
     setCorreo(email);
-    dispatch(setEmail({ email }));
+    dispatchFunction(setEmail({email}));
 
   };
 
   const OnChangePassword = (password: string) => {
     setContrasena(password);
-    dispatch(setPassword({ password }));
+    dispatchFunction(setPassword({password}));
   };
   return (
     <>

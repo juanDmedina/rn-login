@@ -9,8 +9,8 @@ import {
 } from '../interfaces/appInterfaces';
 import {useAppDispatch, useAppSelector} from '../hooks/loginHooks';
 import loginApi from '../api/loginApi';
-import { useMemo } from 'react';
 import {
+  AuthState,
   addMessageError,
   initialRun,
   login,
@@ -25,17 +25,7 @@ import {
   selectToken,
   selectUser,
 } from '../redux/slices/authSlice';
-
-export interface HooksProps {
-  statusSelector?: 'checking' | 'authenticated' | 'not-authenticated';
-  tokenSelector: string | null;
-  errorMessageSelector: string;
-  userSelector: Usuario | null;
-  nameSelector: string;
-  emailSelector: string;
-  passwordSelector: string;
-  dispatch: any;
-}
+import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
 
 type AuthContextProps = {
   checkToken: () => void;
@@ -43,7 +33,21 @@ type AuthContextProps = {
   signIn: (loginData: LoginData) => void;
   logOut: () => void;
   removeError: () => void;
-  hooks: HooksProps;
+  statusSelector: string;
+  tokenSelector: string | null;
+  errorMessageSelector: string;
+  userSelector: Usuario | null;
+  nameSelector: string;
+  emailSelector: string;
+  passwordSelector: string;
+  dispatch: ThunkDispatch<
+    {
+      authentication: AuthState;
+    },
+    undefined,
+    AnyAction
+  > &
+    Dispatch<AnyAction> | undefined;
 };
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -57,19 +61,6 @@ export const AuthProvider = ({children}: any) => {
   const nameSelector = useAppSelector(selectName);
   const emailSelector = useAppSelector(selectEmail);
   const passwordSelector = useAppSelector(selectPassword);
-  const hooks = useMemo(
-    () => ({
-      statusSelector,
-      tokenSelector,
-      errorMessageSelector,
-      userSelector,
-      nameSelector,
-      emailSelector,
-      passwordSelector,
-      dispatch,
-    }),
-    [],
-  );
 
   useEffect(() => {
     checkToken();
@@ -104,7 +95,7 @@ export const AuthProvider = ({children}: any) => {
       }
 
       await AsyncStorage.setItem('token', data.token);
-    } catch ({ error }: any) {
+    } catch ({error}: any) {
       dispatch(addMessageError({errorMessage: 'Información incorrecta'}));
     }
   };
@@ -135,12 +126,19 @@ export const AuthProvider = ({children}: any) => {
   return (
     <AuthContext.Provider
       value={{
-        hooks,
         checkToken,
         signUp,
         signIn,
         logOut,
         removeError,
+        statusSelector,
+        tokenSelector,
+        errorMessageSelector,
+        userSelector,
+        nameSelector,
+        emailSelector,
+        passwordSelector,
+        dispatch,
       }}>
       {children}
     </AuthContext.Provider>
