@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.66% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/12</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -127,38 +127,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,18 +179,18 @@ interface Props extends StackScreenProps&lt;any, any&gt; {}
 &nbsp;
 const LoginPage = ({navigation}: Props) =&gt; {
   const { signIn, removeError, hooks } = LoginContext();
-  let errorMessage = hooks &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >hooks.errorMessageSelector;</span>
-  let correo = hooks &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >hooks.emailSelector;</span>
-  let password = hooks &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >hooks.passwordSelector;</span>
+  let errorMessage = hooks &amp;&amp; hooks.errorMessageSelector;
+  let correo = hooks &amp;&amp; hooks.emailSelector;
+  let password = hooks &amp;&amp; hooks.passwordSelector;
 &nbsp;
   useEffect(() =&gt; {
-    errorMessage = errorMessage === undefined ? '' : <span class="branch-1 cbranch-no" title="branch not covered" >errorMessage;</span>
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (errorMessage.length === 0) {
+    errorMessage = errorMessage === undefined ? '' : errorMessage;
+    if (errorMessage.length === 0) {
       return;
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (errorMessage.includes('incorrecta')) {</span>
-<span class="cstat-no" title="statement not covered" >      Alert.alert('Login incorrecto', errorMessage, [</span>
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (errorMessage.includes('incorrecta')) {
+      Alert.alert('Login incorrecto', errorMessage, [
         {
           text: 'Ok',
           onPress: removeError,
@@ -199,9 +199,9 @@ const LoginPage = ({navigation}: Props) =&gt; {
     }
   }, [errorMessage]);
 &nbsp;
-  const handleLogin = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    Keyboard.dismiss();</span>
-<span class="cstat-no" title="statement not covered" >    signIn({correo, password});</span>
+  const handleLogin = () =&gt; {
+    Keyboard.dismiss();
+    signIn({correo, password});
   };
 &nbsp;
   return (
@@ -209,7 +209,7 @@ const LoginPage = ({navigation}: Props) =&gt; {
       &lt;TextInputsLogin /&gt;
       &lt;LoginButtons
         OnPressSingIn={handleLogin}
-        OnPressRegister={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('RegisterPage')}</span>
+        OnPressRegister={() =&gt; navigation.navigate('RegisterPage')}
       /&gt;
     &lt;/CenterView&gt;
   );
@@ -223,7 +223,7 @@ export default LoginPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-17T13:23:44.105Z
+                at 2023-03-17T14:52:03.800Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

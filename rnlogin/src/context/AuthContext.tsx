@@ -26,15 +26,15 @@ import {
   selectUser,
 } from '../redux/slices/authSlice';
 
-interface HooksProps{
-    statusSelector?: 'checking' | 'authenticated' | 'not-authenticated';
-    tokenSelector: string | null;
-    errorMessageSelector: string;
-    userSelector: Usuario | null;
-    nameSelector: string;
-    emailSelector: string;
-    passwordSelector: string;
-    dispatch: any;
+export interface HooksProps {
+  statusSelector?: 'checking' | 'authenticated' | 'not-authenticated';
+  tokenSelector: string | null;
+  errorMessageSelector: string;
+  userSelector: Usuario | null;
+  nameSelector: string;
+  emailSelector: string;
+  passwordSelector: string;
+  dispatch: any;
 }
 
 type AuthContextProps = {
