@@ -17,7 +17,7 @@ const RegisterButtons = ({OnCreateAccount, OnPressToLogin}: ButtonsProps) => {
   return (
     <ButtonsView>
       <ButtonExample onPress={OnCreateAccount}>
-        <ButtonText>Create Account</ButtonText>
+        <ButtonText>Create</ButtonText>
       </ButtonExample>
       <ButtonExample onPress={OnPressToLogin}>
         <ButtonText>Go Login</ButtonText>
