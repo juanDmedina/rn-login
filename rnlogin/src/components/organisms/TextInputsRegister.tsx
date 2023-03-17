@@ -7,17 +7,18 @@ import {TextTitle} from '../atoms/TextTitle';
 
 import validationInput from '../../helper/validationInput';
 import {TextErrorLabel} from '../atoms/TextErrorLabel';
-import { useAppDispatch } from '../../hooks/loginHooks';
 import { setEmail, setName, setPassword } from '../../redux/slices/authSlice';
+import { LoginContext } from '../../context/AuthContext';
 
 const TextInputsRegister = () => {
+  const {hooks} = LoginContext();
   const [focusPassword, setFocusPassword] = useState(false);
   const [focusCorreo, setFocusCorreo] = useState(false);
   const [focusName, setFocusName] = useState(false);
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [nombre, setNombre] = useState('');
-  const dispatch = useAppDispatch();
+  const dispatch = hooks && hooks.dispatch;
 
 
   const OnChangeName = (name: string) => {

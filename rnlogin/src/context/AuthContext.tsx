@@ -12,7 +12,7 @@ import loginApi from '../api/loginApi';
 import { useMemo } from 'react';
 import {
   addMessageError,
-  initial,
+  initialRun,
   login,
   logout,
   register,
@@ -34,6 +34,7 @@ interface HooksProps{
     nameSelector: string;
     emailSelector: string;
     passwordSelector: string;
+    dispatch: any;
 }
 
 type AuthContextProps = {
@@ -79,13 +80,13 @@ export const AuthProvider = ({children}: any) => {
 
     // No token, no autenticado
     if (!token) {
-      return dispatch(initial());
+      return dispatch(initialRun());
     }
 
     // Hay token
     const resp = await loginApi.get('/auth');
     if (resp.status !== 200) {
-      return dispatch(initial());
+      return dispatch(initialRun());
     }
 
     await AsyncStorage.setItem('token', resp.data.token);

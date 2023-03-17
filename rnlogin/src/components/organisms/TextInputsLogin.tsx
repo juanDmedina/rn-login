@@ -6,16 +6,16 @@ import {TextA} from '../atoms/TextA';
 import {TextTitle} from '../atoms/TextTitle';
 import validationInput from '../../helper/validationInput';
 import {TextErrorLabel} from '../atoms/TextErrorLabel';
-import { useAppDispatch } from '../../hooks/loginHooks';
 import { setEmail, setPassword } from '../../redux/slices/authSlice';
+import { LoginContext } from '../../context/AuthContext';
 
 const TextInputsLogin = () => {
+  const {hooks} = LoginContext();
   const [focus, setFocus] = useState(false);
   const [focusContrasena, setFocusContrasena] = useState(false);
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
-  const dispatch = useAppDispatch();
-
+  const dispatch = hooks && hooks.dispatch;
 
   const OnChangeEmail = (email: string) => {
     setCorreo(email);

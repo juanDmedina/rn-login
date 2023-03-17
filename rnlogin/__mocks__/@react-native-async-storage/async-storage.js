@@ -3,7 +3,7 @@ const merge = require('merge-options').bind({
   ignoreUndefined: true,
 });
 
-const mockRNAsyncStorage = {
+export const mockRNAsyncStorage = {
   __INTERNAL_MOCK_STORAGE__: {},
 
   setItem: jest.fn(async (key, value, callback) => {

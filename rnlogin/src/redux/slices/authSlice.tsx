@@ -53,7 +53,7 @@ const authSlice = createSlice({
       state.token = null;
       state.errorMessage = '';
     },
-    initial: state => {
+    initialRun: state => {
       state.status = 'not-authenticated';
       state.token = null;
       state.user = null;
@@ -79,7 +79,7 @@ export const {
   removeMessageError,
   login,
   logout,
-  initial,
+  initialRun,
   register,
   setName,
   setEmail,
