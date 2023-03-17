@@ -10,6 +10,7 @@ const AppNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
+        headerShown: false,
         cardStyle: {
           backgroundColor: 'white',
         },

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect} from 'react';
 import {TextTitle} from '../atoms/TextTitle';
 import {CenterView} from '../atoms/CenterView';
