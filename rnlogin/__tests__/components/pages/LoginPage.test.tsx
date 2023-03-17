@@ -1,7 +1,11 @@
 import {describe, expect, jest, test} from '@jest/globals';
 import {cleanup, render, fireEvent} from '@testing-library/react-native';
 import LoginPage from '../../../src/components/pages/LoginPage';
-import {AuthContext} from '../../../src/context/AuthContext';
+import { AuthContext } from '../../../src/context/AuthContext';
+
+jest.mock('@react-native-async-storage/async-storage', () =>
+  require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
 
 const mockedNavigate = jest.fn();
 const mockedConfig = jest.fn();

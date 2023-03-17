@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.8% </span>
+                <span class="strong">47.61% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/42</span>
+                <span class='fraction'>20/42</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">47.05% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>8/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.77% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/36</span>
+                <span class='fraction'>14/36</span>
             </div>
         
             
@@ -176,7 +176,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,7 +186,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,9 +218,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -249,16 +249,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {createSlice} from '@reduxjs/toolkit';
@@ -316,10 +316,10 @@ const authSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >      state.token = null;</span>
 <span class="cstat-no" title="statement not covered" >      state.errorMessage = '';</span>
     },
-    initialRun: <span class="fstat-no" title="function not covered" >st</span>ate =&gt; {
-<span class="cstat-no" title="statement not covered" >      state.status = 'not-authenticated';</span>
-<span class="cstat-no" title="statement not covered" >      state.token = null;</span>
-<span class="cstat-no" title="statement not covered" >      state.user = null;</span>
+    initialRun: state =&gt; {
+      state.status = 'not-authenticated';
+      state.token = null;
+      state.user = null;
     },
     setName: <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >      state.name = action.payload.name;</span>
@@ -350,14 +350,14 @@ export const {
   cleanAccount,
 } = authSlice.actions;
 &nbsp;
-export const selectToken = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.token;</span>
-export const selectErrorMessage = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt;
-<span class="cstat-no" title="statement not covered" >  state.authentication.errorMessage;</span>
-export const selectStatus = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.status;</span>
-export const selectUser = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.user;</span>
-export const selectName = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.name;</span>
-export const selectEmail = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.email;</span>
-export const selectPassword = <span class="fstat-no" title="function not covered" >(s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.authentication.password;</span>
+export const selectToken = (state: RootState) =&gt; state.authentication.token;
+export const selectErrorMessage = (state: RootState) =&gt;
+  state.authentication.errorMessage;
+export const selectStatus = (state: RootState) =&gt; state.authentication.status;
+export const selectUser = (state: RootState) =&gt; state.authentication.user;
+export const selectName = (state: RootState) =&gt; state.authentication.name;
+export const selectEmail = (state: RootState) =&gt; state.authentication.email;
+export const selectPassword = (state: RootState) =&gt; state.authentication.password;
 &nbsp;
 export default authSlice.reducer;
 &nbsp;</pre></td></tr></table></pre>
@@ -367,7 +367,7 @@ export default authSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-17T18:52:04.051Z
+                at 2023-03-17T23:12:17.690Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
