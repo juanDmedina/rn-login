@@ -7,8 +7,8 @@ import {TextTitle} from '../atoms/TextTitle';
 
 import validationInput from '../../helper/validationInput';
 import {TextErrorLabel} from '../atoms/TextErrorLabel';
-import { setEmail, setName, setPassword } from '../../redux/slices/authSlice';
-import { LoginContext } from '../../context/AuthContext';
+import {setEmail, setName, setPassword} from '../../redux/slices/authSlice';
+import {LoginContext} from '../../context/AuthContext';
 
 const TextInputsRegister = () => {
   const {dispatch} = LoginContext();
@@ -20,10 +20,9 @@ const TextInputsRegister = () => {
   const [nombre, setNombre] = useState('');
   const dispatchFunction = dispatch === undefined ? () => '' : dispatch;
 
-
   const OnChangeName = (name: string) => {
     setNombre(name);
-     dispatchFunction(setName({name}));
+    dispatchFunction(setName({name}));
   };
 
   const OnChangeEmail = (email: string) => {

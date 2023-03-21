@@ -11,8 +11,15 @@ import {CenterView} from '../atoms/CenterView';
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginPage = ({navigation}: Props) => {
-  const { signIn, removeError, errorMessageSelector, emailSelector, passwordSelector } = LoginContext();
-  let errorMessage = errorMessageSelector === undefined ? '' : errorMessageSelector;
+  const {
+    signIn,
+    removeError,
+    errorMessageSelector,
+    emailSelector,
+    passwordSelector,
+  } = LoginContext();
+  let errorMessage =
+    errorMessageSelector === undefined ? '' : errorMessageSelector;
   let correo = emailSelector === undefined ? '' : emailSelector;
   let password = passwordSelector === undefined ? '' : passwordSelector;
 

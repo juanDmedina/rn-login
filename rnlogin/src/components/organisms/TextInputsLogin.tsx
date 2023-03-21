@@ -6,8 +6,8 @@ import {TextA} from '../atoms/TextA';
 import {TextTitle} from '../atoms/TextTitle';
 import validationInput from '../../helper/validationInput';
 import {TextErrorLabel} from '../atoms/TextErrorLabel';
-import { setEmail, setPassword } from '../../redux/slices/authSlice';
-import { LoginContext } from '../../context/AuthContext';
+import {setEmail, setPassword} from '../../redux/slices/authSlice';
+import {LoginContext} from '../../context/AuthContext';
 
 const TextInputsLogin = () => {
   const {dispatch} = LoginContext();
@@ -20,7 +20,6 @@ const TextInputsLogin = () => {
   const OnChangeEmail = (email: string) => {
     setCorreo(email);
     dispatchFunction(setEmail({email}));
-
   };
 
   const OnChangePassword = (password: string) => {
